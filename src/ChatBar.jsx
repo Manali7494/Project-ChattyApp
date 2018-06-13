@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 
 class ChatBar extends Component {
-  // this.props.addMsgFcn
   
   handleChange(event){
     if (event.key === 'Enter'){
-      // this.props.addMsgFcn
-      let username = this.props.user.name;
+      let username = this.refs.userName.value;
       let content = event.target.value;
      this.props.addMsgFcn(username,content);
      event.target.value = '';
@@ -18,8 +16,8 @@ class ChatBar extends Component {
       <footer className="chatbar" >
         <input
           className="chatbar-username"
-          placeholder="Your Name (Optional)"
-          defaultValue = {this.props.user.name}
+          placeholder="Your Name (Optional)" ref='userName'
+          // defaultValue = {this.props.user.name}
           />
         <input
           name='chatMessage'

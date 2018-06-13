@@ -8,28 +8,13 @@ class App extends Component {
     super(props);
     this.state = {
       currentUser: { name: "Bob" },
-      // messages: [
-      //   {
-      //     id: 1,
-      //     username: "Bob",
-      //     content: "Has anyone seen my marbles?"
-      //   },
-      //   {
-      //     id: 2,
-      //     username: "Anonymous",
-      //     content:
-      //       "No, I think you lost them. You lost your marbles Bob. You lost them for good."
-      //   }
-      // ]
       messages: []
     };
   }
   componentDidMount() {
 
   this.socket = new WebSocket("ws://localhost:3001", "protocalOne");
-    // this.socket.onopen = function(event) {
-      
-    // };
+
     // setTimeout(() => {
     //   let newMessage = { id: 3, username: "Michelle", content: "Hello there!" };
     //   let messages = this.state.messages.concat(newMessage);
@@ -38,8 +23,6 @@ class App extends Component {
   }
 
   addMessage(username, content) {
-    // let currentLength = this.state.messages.length;
-    //let msgId = currentLength + 1;
     let newMessage = {username: username, content: content };
     this.socket.send(JSON.stringify(newMessage));
     this.socket.onmessage = function(event){
@@ -58,7 +41,6 @@ class App extends Component {
         </nav>
         <MessageList messages={this.state.messages} />
         <ChatBar
-          user={this.state.currentUser}
           addMsgFcn={this.addMessage.bind(this)}
         />
       </div>
