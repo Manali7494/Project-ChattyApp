@@ -23,13 +23,25 @@ class App extends Component {
   }
 
   addMessage(username, content) {
-    let newMessage = {username: username, content: content };
+    let newMessage = {type: "postMessage" , username: username, content: content };
     this.socket.send(JSON.stringify(newMessage));
     this.socket.onmessage = function(event){
-      let eventData = JSON.parse(event.data)
-      let messages = this.state.messages.concat(eventData);
-    this.setState({ messages: messages });  
-    }.bind(this);    
+      let messageData = JSON.parse(event.data)
+      if (messageData.type === "incomingMessage"){
+        let messages = this.state.messages.concat(messageData);
+      this.setState({ messages: messages });  
+      }
+    }.bind(this);
+    
+    // addNotification(content){
+    //   let newNotification = {type: "postNotification", content: "newNotification"};
+    //   this.socket.send(JSON.stringify(newNotification));
+    //   this.socket.onmessage = function(event){
+    //     let notificationData = JSON.parse(event.data);
+    //   //   if (notificationData.type === "incomingNotification"){
+          
+    //   // }
+    // }
   }
   render() {
     return (

@@ -25,6 +25,7 @@ wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(data) {
     let messageObject = JSON.parse(data)
     let sendObject = {
+      type: "incomingMessage",
             id: uuidv4(),
       username: messageObject.username,
       content: messageObject.content
