@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+//import IncomingNotification from './Notification.jsx';
 
 class Message extends Component{
 render(){
   return(
 <main className="messages">
+         {/* < IncomingNotification /> */}
          <div className="message">
            <span className="message-username">{this.props.msgUsr}</span>
            <span className="message-content">{this.props.msgContent}</span>
-         </div> 
+         </div>
+           
        </main>
   )
 }
@@ -37,21 +40,21 @@ export default Message;
 //   }
 // }
 
-// class IncomingNotification extends Component {
-//   constructor(props) {
-//     super();
-//     this.state = {
-//       type: 'incomingNotification',
-//       content: 'Anonymous1 changed their name to nomnom'
-//     };
-//   }
+class IncomingNotification extends Component {
+  // constructor(props) {
+  //   super();
+  //   this.state = {
+  //     type: 'incomingNotification',
+  //     content: 'Anonymous1 changed their name to nomnom'
+  //   };
+  // }
 
-//   render() {
-//     return (
-//       <div className="message system">
-//         Anonymous1 changed their name to nomnom.
-//       </div>
-//     );
-//   }
-// }
+  render() {
+    return (
+      <div className="message system">
+        Anonymous1 changed their name to nomnom.
+      </div>
+    );
+  }
+}
 

@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 
 class ChatBar extends Component {
+
+  handleUsername(event){
+    let storedUsername = this.props.user;
+    let displayUsername = event.target.value;
+    if (storedUsername !== displayUsername){
+      this.props.addUserFcn(displayUsername)
+    }
+  }
   
   handleChange(event){
     if (event.key === 'Enter'){
@@ -16,8 +24,9 @@ class ChatBar extends Component {
       <footer className="chatbar" >
         <input
           className="chatbar-username"
-          placeholder="Your Name (Optional)" ref='userName'
+          placeholder="Your Name (Optional)" ref='userName' onBlur={this.handleUsername.bind(this)}
           // defaultValue = {this.props.user.name}
+
           />
         <input
           name='chatMessage'
