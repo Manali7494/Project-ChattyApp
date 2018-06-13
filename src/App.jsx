@@ -8,19 +8,20 @@ class App extends Component {
     super(props);
     this.state = {
       currentUser: { name: "Bob" },
-      messages: [
-        {
-          id: 1,
-          username: "Bob",
-          content: "Has anyone seen my marbles?"
-        },
-        {
-          id: 2,
-          username: "Anonymous",
-          content:
-            "No, I think you lost them. You lost your marbles Bob. You lost them for good."
-        }
-      ]
+      // messages: [
+      //   {
+      //     id: 1,
+      //     username: "Bob",
+      //     content: "Has anyone seen my marbles?"
+      //   },
+      //   {
+      //     id: 2,
+      //     username: "Anonymous",
+      //     content:
+      //       "No, I think you lost them. You lost your marbles Bob. You lost them for good."
+      //   }
+      // ]
+      messages: []
     };
   }
   componentDidMount() {
@@ -29,20 +30,23 @@ class App extends Component {
     // this.socket.onopen = function(event) {
       
     // };
-    setTimeout(() => {
-      let newMessage = { id: 3, username: "Michelle", content: "Hello there!" };
-      let messages = this.state.messages.concat(newMessage);
-      this.setState({ messages: messages });
-    }, 3000);
+    // setTimeout(() => {
+    //   let newMessage = { id: 3, username: "Michelle", content: "Hello there!" };
+    //   let messages = this.state.messages.concat(newMessage);
+    //   this.setState({ messages: messages });
+    // }, 3000);
   }
 
   addMessage(username, content) {
-    let currentLength = this.state.messages.length;
-    let msgId = currentLength + 1;
-    let newMessage = { id: msgId, username: username, content: content };
+    // let currentLength = this.state.messages.length;
+    //let msgId = currentLength + 1;
+    let newMessage = {username: username, content: content };
     this.socket.send(JSON.stringify(newMessage));
-    //let messages = this.state.messages.concat(newMessage);
-    //this.setState({ messages: messages });
+    this.socket.onmessage = function(event){
+      let eventData = JSON.parse(event.data)
+      let messages = this.state.messages.concat(eventData);
+    this.setState({ messages: messages });  
+    }.bind(this);    
   }
   render() {
     return (
