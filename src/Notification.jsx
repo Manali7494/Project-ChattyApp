@@ -5,7 +5,7 @@ class IncomingNotification extends Component {
         console.log("HELLO IT IS RECEIVED!")  
         return (
           <div className="message system">
-            {this.props.content}
+            {this.props.notif}
 
           </div>
         );

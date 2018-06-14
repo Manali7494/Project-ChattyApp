@@ -9,7 +9,8 @@ class App extends Component {
     super(props);
     this.state = {
       currentUser: { name: "Anonymous" },
-      messages: []
+      messages: [],
+      notification: ""
     };
   }
   componentDidMount() {
@@ -35,8 +36,9 @@ class App extends Component {
     if (data.type === 'incomingNotification')
     {let notificationData = JSON.parse(event.data);
         if (notificationData.type === "incomingNotification"){  
+          this.setState({notification: notificationData.content})
         //  this.setState = ({userChanged: notificationData.content})
-        console.log(notificationData.content);
+//        console.log(notificationData.content);
         }
       }
   }
@@ -88,7 +90,7 @@ class App extends Component {
             Chatty
           </a>
         </nav>
-        <MessageList messages={this.state.messages}/>
+        <MessageList messages={this.state.messages} notif={this.state.notification}/>
         <ChatBar
           addMsgFcn={this.addMessage.bind(this)} 
           addUserFcn = {this.addUser.bind(this)}

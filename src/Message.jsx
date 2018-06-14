@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-//import IncomingNotification from './Notification.jsx';
+
 
 class Message extends Component{
 render(){
   return(
-<main className="messages">
-         {/* < IncomingNotification /> */}
          <div className="message">
            <span className="message-username">{this.props.msgUsr}</span>
            <span className="message-content">{this.props.msgContent}</span>
-         </div>
-           
-       </main>
+         </div>   
   )
 }
 }
