@@ -6,14 +6,25 @@ class Message extends Component {
     const usrStyle = {
       color: this.props.color
     };
+
+    const imgStyle = {
+      height: '60%'
+    };
+
+    let msg = this.props.msgContent;
+    let result = (msg.endsWith('.png') || msg.endsWith('.jpg') || msg.endsWith('.gif')) ? 
+    (<span className="message-content"><img style={imgStyle} src={msg} alt='it worked' /></span>) 
+    : (<span className="message-content"> {this.props.msgContent}</span>)
+
     return (
       <div className="message">
         <span className="message-username" style={usrStyle}>
           {this.props.msgUsr}
         </span>
-        <span className="message-content">{this.props.msgContent}</span>
+        {result}
       </div>
-    );
+    )
   }
 }
+
 export default Message;
