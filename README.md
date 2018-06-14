@@ -10,6 +10,7 @@ For client side, it includes React with SASS. For server side, it includes node,
 3. Message will be broadcasted to all conntected users. 
 4. Number of connected users are listed and continously updated
 5. Users are assigned a specific color for their chat messages and username changes
+6. If users put images links (.png, .gif, .jpg), the image will be rendered in the screen
 
 ## Getting Started
 1. Fork this repository, then clone your fork of this repository.
@@ -44,5 +45,9 @@ For client side, it includes React with SASS. For server side, it includes node,
 
 ## Screenshots
 
-### Chat History
+### 1. Chat History
 !["ChatHistory"](./docs/ChatHistory.png)
+
+### 2. Chat Image
+!["GifImage"](./docs/GifImage.png)
+
