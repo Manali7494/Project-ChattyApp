@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 
 class IncomingNotification extends Component {     
-    render() { 
+    render() {
+      const usrStyle = {
+        color: this.props.color
+      } 
         return (
-          <div className="message system">
+          <div style={usrStyle} className="message system">
             {this.props.notif}
-
           </div>
         );
       }

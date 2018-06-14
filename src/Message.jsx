@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
-
 class Message extends Component{
 render(){
+  const usrStyle = {
+    color: this.props.color
+  }
   return(
          <div className="message">
-           <span className="message-username">{this.props.msgUsr}</span>
+           <span className="message-username" style={usrStyle}>{this.props.msgUsr}</span>
            <span className="message-content">{this.props.msgContent}</span>
          </div>   
   )

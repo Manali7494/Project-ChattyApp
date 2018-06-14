@@ -6,10 +6,10 @@ class MessageList extends Component {
     let list = this.props.messages.map((item) => {
     
       if (item.type === "incomingMessage"){
-        return(<Message key={item.id} msgUsr={item.username} msgContent={item.content}/>)        
+        return(<Message key={item.id} msgUsr={item.username} msgContent={item.content} color={item.color}/>)        
       }
       else if (item.type === "incomingNotification"){
-        return (<IncomingNotification key={item.id} notif={item.content} />)
+        return (<IncomingNotification key={item.id} notif={item.content} color={item.color} />)
       }
     });
     return list

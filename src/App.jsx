@@ -8,32 +8,23 @@ class App extends Component {
     this.state = {
       currentUser: { name: "Anonymous" },
       messages: [],
-      connection: 0
+      connection: 0,
     };
   }
   componentDidMount() {
   this.socket = new WebSocket("ws://localhost:3001");
 
-    this.socket.onopen = (event) => {
+    this.socket.onopen = () => {
       console.log("connected to server")
     }
 
     this.socket.onmessage = (event) => {
-    //console.log(event);
-
     const data = JSON.parse(event.data);
     
     if (data.type === 'connect'){
-      console.log(data.num)
       this.setState({connection: data.num})
-      
-    // console.log(data.portId);
-    //   this.setState( prevState => ({
-    //   connection: [...prevState.connection, data.portId]
-    // }) )
     }
 
-    
 
     if (data.type === 'incomingMessage')
   {  
@@ -76,7 +67,8 @@ class App extends Component {
           {this.state.connection} users online
           </div>
         </nav>
-        <MessageList messages={this.state.messages}/>
+        <MessageList messages={this.state.messages} 
+        />
         <ChatBar
           addMsgFcn={this.addMessage.bind(this)} 
           addUserFcn = {this.addUser.bind(this)}
