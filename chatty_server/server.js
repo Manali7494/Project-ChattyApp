@@ -4,7 +4,7 @@ const express = require("express");
 const WebSocket = require('ws')
 const SocketServer = WebSocket.Server;
 const uuidv4 = require('uuid/v4');
-
+const clients = [];
 // Set the port to 3001
 const PORT = 3001;
 
@@ -22,20 +22,53 @@ const wss = new SocketServer({ server });
 
 wss.on('connection', function connection(ws) {
   console.log('client connected');
+  clients.push(ws);
+  wss.clients.forEach(function each(client){
+    if (client.readyState === WebSocket.OPEN){
+      client.send(JSON.stringify({type: 'connect', num: clients.length}));
+    }
+  })
+
   ws.on('message', function incoming(data) {
-    let messageObject = JSON.parse(data)
+    let object = JSON.parse(data)
+    
+   if(object.type === 'postMessage'){
     let sendObject = {
       type: "incomingMessage",
             id: uuidv4(),
-      username: messageObject.username,
-      content: messageObject.content
+      username: object.username,
+      content: object.content
     }
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify(sendObject));
       }
     });
-  });  
+  }
+   else if (object.type === 'postNotification'){
+    let sendObject = {
+      type: "incomingNotification",
+      id: uuidv4(),
+      content: object.content
+    }
+    wss.clients.forEach(function each(client){
+      if (client.readyState === WebSocket.OPEN){
+        client.send(JSON.stringify(sendObject));
+      }
+    })
+  }
+  });
+  
+  
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
-  ws.on("close", () => console.log("Client disconnected"));
+  ws.on("close", () => {
+    clients.pop();
+    wss.clients.forEach(function each(client){
+      if (client.readyState === WebSocket.OPEN){
+        client.send(JSON.stringify({type:'connect', num: clients.length}));
+      }
+      console.log("Client disconnected")
+    })
+
+  });
 });

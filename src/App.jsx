@@ -8,17 +8,33 @@ class App extends Component {
     this.state = {
       currentUser: { name: "Anonymous" },
       messages: [],
+      connection: 0
     };
   }
   componentDidMount() {
-  this.socket = new WebSocket("ws://localhost:3001", "protocalOne");
+  this.socket = new WebSocket("ws://localhost:3001");
 
     this.socket.onopen = (event) => {
       console.log("connected to server")
     }
 
     this.socket.onmessage = (event) => {
-    const data = JSON.parse (event.data);
+    //console.log(event);
+
+    const data = JSON.parse(event.data);
+    
+    if (data.type === 'connect'){
+      console.log(data.num)
+      this.setState({connection: data.num})
+      
+    // console.log(data.portId);
+    //   this.setState( prevState => ({
+    //   connection: [...prevState.connection, data.portId]
+    // }) )
+    }
+
+    
+
     if (data.type === 'incomingMessage')
   {  
       let message = this.state.messages.concat(data);
@@ -56,6 +72,9 @@ class App extends Component {
           <a href="/" className="navbar-brand">
             Chatty
           </a>
+          <div id='online'>
+          {this.state.connection} users online
+          </div>
         </nav>
         <MessageList messages={this.state.messages}/>
         <ChatBar
