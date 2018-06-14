@@ -1,45 +1,48 @@
-React Boilerplate
-=====================
+# Chatty-App
 
-A minimal and light dev environment for ReactJS.
+Chatty App is a multiple users chatting application 
 
-### Usage
+For client side, it includes React with SASS. For server side, it includes node, express, and ws (for websockets). 
 
-Clone the boilerplate and create your own git repo.
+## Features
+1. It allows multiple users to join the same host
+2. Each user can set their own username (optional) and type in a chat message
+3. Message will be broadcasted to all conntected users. 
+4. Number of connected users are listed and continously updated
+5. Users are assigned a specific color for their chat messages and username changes
 
-```
-git clone git@github.com:lighthouse-labs/react-simple-boilerplate.git
-cd react-simple-boilerplate
-git remote rm origin
-git remote add origin [YOUR NEW REPOSITORY]
-# Manually update your package.json file
-```
+## Getting Started
+1. Fork this repository, then clone your fork of this repository.
+2. Install dependencies for the client using the `npm install` command.
+3. Go to chatty_server folder and install dependencies for the server using `npm install` command
+4. Start the webpack dev server using `npm start` in root directory
+5. Start the websocket server using `node index.js` in chatty_server
+6. The app will be served at <http://localhost:3000/>.
 
-Install the dependencies and start the server.
+## Dependencies
 
-```
-npm install
-npm start
-open http://localhost:3000
-```
+- Node 5.10.x or above
+### 1. Client Side
+- babel-core
+- babel-loader
+- babel-preset-es2015
+- babel-preset-react
+- babel-preset-stage-0
+- css-loader
+- node-sass
+- sass-loader
+- sockjs-client
+- style-loader
+- webpack
+- webpack-dev-server
+- react
+- react-dom
+### 2. Server
+- express
+- ws
+- uuid
 
-### Static Files
+## Screenshots
 
-You can store static files like images, fonts, etc in the `build` folder.
-
-For example, if you copy a file called my_image.png into the build folder you can access it using `http://localhost:3000/build/my_image.png`.
-
-### Linting
-
-This boilerplate project includes React ESLint configuration.
-
-```
-npm run lint
-```
-
-### Dependencies
-
-* React
-* Webpack
-* [babel-loader](https://github.com/babel/babel-loader)
-* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+### Chat History
+!["ChatHistory"](./docs/ChatHistory.png)
