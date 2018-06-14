@@ -25,7 +25,7 @@ class ChatBar extends Component {
         <input
           className="chatbar-username"
           placeholder="Your Name (Optional)" ref='userName' onBlur={this.handleUsername.bind(this)}
-          // defaultValue = {this.props.user.name}
+           defaultValue = 'Anonymous'
 
           />
         <input

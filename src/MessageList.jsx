@@ -3,9 +3,14 @@ import Message from "./Message.jsx";
 import IncomingNotification from './Notification.jsx';
 class MessageList extends Component {
   getList() {
-    let list = this.props.messages.map((item, index) => {
+    let list = this.props.messages.map((item) => {
     
-       return(<Message key={item.id} msgUsr={item.username} msgContent={item.content}/>)
+      if (item.type === "incomingMessage"){
+        return(<Message key={item.id} msgUsr={item.username} msgContent={item.content}/>)        
+      }
+      else if (item.type === "incomingNotification"){
+        return (<IncomingNotification key={item.id} notif={item.content} />)
+      }
     });
     return list
   }
@@ -13,7 +18,6 @@ class MessageList extends Component {
     return (
       <div> 
         <main className="messages">
-    <IncomingNotification notif={this.props.notif}/>
     {this.getList()}
   </main>
     </div>

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
 class IncomingNotification extends Component {     
-    render() {
-        console.log("HELLO IT IS RECEIVED!")  
+    render() { 
         return (
           <div className="message system">
             {this.props.notif}
