@@ -13,7 +13,7 @@ class Message extends Component {
     };
 
     const imgStyle = {
-      height: '60%'
+      width: '60%'
     };
 
     let msg = this.props.msgContent;
