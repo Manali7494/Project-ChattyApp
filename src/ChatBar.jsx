@@ -3,6 +3,11 @@ import React, { Component } from "react";
 // Renders and handles text inputs for Username and Chat
 
 class ChatBar extends Component {
+
+  constructor(){
+    super();
+  }
+  
   handleUsernameChange(event) {
     let storedUsername = this.props.user;
     let displayUsername = event.target.value;

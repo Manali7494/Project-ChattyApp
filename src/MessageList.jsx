@@ -6,6 +6,10 @@ import IncomingNotification from "./Notification.jsx";
 // Also, calls appropriate component for display
 
 class MessageList extends Component {
+  constructor() {
+    super();
+  }
+
   getList() {
     let list = this.props.messages.map(item => {
       if (item.type === "incomingMessage") {

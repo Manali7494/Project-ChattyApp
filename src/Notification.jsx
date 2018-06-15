@@ -2,6 +2,10 @@ import React, { Component } from "react";
 
 //Displays notification for user change
 class IncomingNotification extends Component {
+  constructor() {
+    super();
+  }
+
   render() {
     const usrStyle = {
       color: this.props.color
