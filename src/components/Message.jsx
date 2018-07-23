@@ -16,17 +16,17 @@ class Message extends Component {
       width: '60%'
     };
 
-    // let msg = this.props.msgContent;
-    // let result = (msg.endsWith('.png') || msg.endsWith('.jpg') || msg.endsWith('.gif')) ? 
-    // (<span className="message-content"><img style={imgStyle} src={msg}/></span>) 
-    // : (<span className="message-content"> {this.props.msgContent}</span>)
+    let msg = this.props.msgContent;
+    let result = (msg.endsWith('.png') || msg.endsWith('.jpg') || msg.endsWith('.gif')) ? 
+    (<span className="message-content"><img style={imgStyle} src={msg}/></span>) 
+    : (<span className="message-content"> {this.props.msgContent}</span>)
 
     return (
       <div className="message">
         <span className="message-username" style={usrStyle}>
-          {/* {this.props.msgUsr} */}
+          {this.props.msgUsr}
         </span>
-        {/* {result} */}
+        {result}
       </div>
     )
   }

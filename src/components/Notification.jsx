@@ -5,16 +5,15 @@ class IncomingNotification extends Component {
   constructor() {
     super();
   }
-
   render() {
-    // const usrStyle = {
-    //   color: this.props.color
-    // };
+    const usrStyle = {
+      color: this.props.color
+    };
     return (
       <div 
-      // style={usrStyle} 
+      style={usrStyle} 
       className="message system">
-        {/* {this.props.notif} */}
+        {this.props.notif}
       </div>
     );
   }

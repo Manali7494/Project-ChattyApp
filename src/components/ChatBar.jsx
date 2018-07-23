@@ -5,7 +5,6 @@ import React, { Component } from "react";
 class ChatBar extends Component {
   
   handleUsernameChange(event) {
-    // let storedUsername = this.props.user;
     let displayUsername = event.target.value;
     let oldUsr = this.props.userChangeProp.currentUser.name
     if (oldUsr !== displayUsername){
@@ -39,10 +38,10 @@ class ChatBar extends Component {
           onBlur={this.handleUsernameChange.bind(this)}
           defaultValue="Anonymous"
         />
-        {console.log(this.props)}
         <input
           name="chatMessage"
-          className="chatbar-message" 
+          className="chatbar-message"
+          placeholder="Type a message and hit ENTER" 
           onKeyPress = {this.handleMessageSubmission.bind(this)} 
           />
       </footer>

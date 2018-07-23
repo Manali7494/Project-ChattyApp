@@ -13,3 +13,10 @@ export function changeUser(username){
     }
 }
 
+
+export function returnConnection(number){
+    return{
+        type: 'showResult',
+        payload: number
+    }
+}
