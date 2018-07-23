@@ -47,6 +47,7 @@ wss.on("connection", function connection(ws) {
         content: object.content,
         color: selectedColor
       };
+      console.log(object)
       wss.clients.forEach(function each(client) {
         if (client.readyState === WebSocket.OPEN) {
           client.send(JSON.stringify(sendObject));
@@ -55,6 +56,7 @@ wss.on("connection", function connection(ws) {
 
       // Broadcast username change notifications to clients
     } else if (object.type === "postNotification") {
+      console.log(object)
       let sendObject = {
         type: "incomingNotification",
         id: uuidv4(),

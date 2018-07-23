@@ -1,4 +1,4 @@
-export function currentUser(state={name:'John'}, action){
+export function currentUser(state={name:'Anonymous'}, action){
     const {type, payload} = action
 
     switch(type){
