@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import * as changeUserCreator from '../actions/changeUser.js'
+import * as ActionCreator from '../actions/chatBarActionCreator.js'
 import { connect } from 'react-redux';
 // Renders and handles text inputs for Username and Chat
 
@@ -16,14 +16,15 @@ class ChatBar extends Component {
 
     
   // }
-  // handleMessageSubmission(event) {
-  //   if (event.key === "Enter") {
-  //     let username = this.refs.userName.value;
-  //     let content = event.target.value;
-  //     this.props.addMsgFcn(username, content);
-  //     event.target.value = "";
-  //   }
-  // }
+  handleMessageSubmission(event) {
+    if (event.key === "Enter") {
+      // let username = this.refs.userName.value;
+      let content = event.target.value;
+      console.log(content)
+      this.props.addMessage(content);
+      event.target.value = "";
+    }
+  }
   render() {
     return (
       <footer className="chatbar">
@@ -34,11 +35,14 @@ class ChatBar extends Component {
           onBlur={this.handleUsernameChange.bind(this)}
           defaultValue="Anonymous"
         />
-        {/* {console.log(this.props.userChangeProp.currentUser.name)} */}
+        {console.log(this.props.userChangeProp.currentUser.name)}
+        {console.log(this.props)}
+        {console.log(this.props.userChangeProp.messages)}
         <input
           name="chatMessage"
           className="chatbar-message" 
-          placeholder = {this.props.userChangeProp.currentUser.name} />
+          onKeyPress = {this.handleMessageSubmission.bind(this)} 
+          />
       </footer>
     );
   }
@@ -49,4 +53,4 @@ export default connect(
   return{
     userChangeProp: state
   }
-}, changeUserCreator)(ChatBar);
+}, ActionCreator)(ChatBar);

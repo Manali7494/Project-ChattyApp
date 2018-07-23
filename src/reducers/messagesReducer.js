@@ -1,11 +1,10 @@
-export function messages(state = [], action=null){
+export function messages(state=['First Message'], action){
     const {type, payload} = action
 
     switch(type){
         case 'addMessage':
           return state.concat(payload);
-
-        case 'default':
+        default:
           return state
     }
 }
